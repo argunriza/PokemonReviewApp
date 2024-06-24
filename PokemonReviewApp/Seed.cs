@@ -6,16 +6,14 @@ namespace PokemonReviewApp
 {
     public class Seed
     {
-        private readonly AppDbContext _dbContext;
-
-        public Seed(AppDbContext dbContext)
+        private readonly AppDbContext dataContext;
+        public Seed(AppDbContext context)
         {
-            _dbContext = dbContext;
+            this.dataContext = context;
         }
-
         public void SeedDataContext()
         {
-            if (!_dbContext.PokemonOwners.Any())
+            if (!dataContext.PokemonOwners.Any())
             {
                 var pokemonOwners = new List<PokemonOwner>()
                 {
@@ -32,13 +30,11 @@ namespace PokemonReviewApp
                             Reviews = new List<Review>()
                             {
                                 new Review { Title="Pikachu",Text = "Pickahu is the best pokemon, because it is electric", Rating = 5,
-                                    Reviewer = new Reviewer(){ FirstName = "Teddy", LastName = "Smith" } },
-
+                                Reviewer = new Reviewer(){ FirstName = "Teddy", LastName = "Smith" } },
                                 new Review { Title="Pikachu", Text = "Pickachu is the best a killing rocks", Rating = 5,
-                                    Reviewer = new Reviewer(){ FirstName = "Taylor", LastName = "Jones" } },
-
+                                Reviewer = new Reviewer(){ FirstName = "Taylor", LastName = "Jones" } },
                                 new Review { Title="Pikachu",Text = "Pickchu, pickachu, pikachu", Rating = 1,
-                                    Reviewer = new Reviewer(){ FirstName = "Jessica", LastName = "McGregor" } },
+                                Reviewer = new Reviewer(){ FirstName = "Jessica", LastName = "McGregor" } },
                             }
                         },
                         Owner = new Owner()
@@ -115,10 +111,11 @@ namespace PokemonReviewApp
                         }
                     }
                 };
-
-                _dbContext.PokemonOwners.AddRange(pokemonOwners);
-                _dbContext.SaveChanges();
+                dataContext.PokemonOwners.AddRange(pokemonOwners);
+                dataContext.SaveChanges();
             }
         }
     }
-}
+        }
+    
+

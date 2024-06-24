@@ -49,7 +49,7 @@ namespace PokemonReviewApp.Data
             modelBuilder.Entity<PokemonOwner>()
                         .HasOne(p => p.Owner)
                         .WithMany(pc => pc.PokemonOwners)
-                        .HasForeignKey(c => c.Owner);
+                        .HasForeignKey(c => c.OwnerId);
 
 
         }
